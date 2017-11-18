@@ -3,3 +3,8 @@
 
 API REST NodeJs almundo.
 
+Estructura del proyecto: 
+
+
+
+
