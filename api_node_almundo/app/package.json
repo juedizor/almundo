@@ -1,0 +1,16 @@
+{
+  "name": "api_rest_almundo",
+  "version": "1.0.0",
+  "description": "api consulta de hoteles",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Julio Izquierdo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "json-parser": "^1.1.5",
+    "json-query": "^2.2.2"
+  }
+}
