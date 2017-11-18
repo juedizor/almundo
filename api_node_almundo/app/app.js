@@ -1,5 +1,6 @@
 var express = require("express"),
-    hotelService = require("./services/hotelService.js");
+    hotelService = require("./services/hotelService.js"),
+    config = require('./config/config.js').get(process.env.NODE_ENV);
 
 
 var getHoteles = hotelService.restGetHotel;
@@ -20,4 +21,4 @@ apiRoutes.route("/hoteles/:nombre")
 app.use('/api', apiRoutes);
 
 // Start server
-app.listen(8080);
+app.listen(config.port);
