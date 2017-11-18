@@ -6,7 +6,8 @@ Explicacion:
 2. Se generan dos proyectos uno para la creacion del server el cual recibe las llamadas de los clientes, y asi mismo un proyecto cliente 
 de donde se envian las llamadas simultaneas al server para que sean atendidas. 
 
-
+ 
+	
 Tener en cuenta en la ejecucion: 
 
 1. Primero ejecutar el proyecto callCenter en el cual se debe ejecutar a traves de la clase co.com.call.dispatcher.Main que es donde se 
