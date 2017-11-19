@@ -15,12 +15,12 @@
     self.amenities = icons;
     self.stars = star;
     self.estrellas = {};
-    self.oneStar = "";
-    self.twoStar = "";
-    self.threeStar = "";
-    self.fourStar = "";
-    self.fiveStar = "";
-    self.allStar = "";
+    self.oneStar = false;
+    self.twoStar = false;
+    self.threeStar = false;
+    self.fourStar =false;
+    self.fiveStar = false;
+    self.allStar = false;
     self.showSpinner = false;
 
 
@@ -42,16 +42,26 @@
       }
     )
 
+    self.buscarPorEstrellas = function(array) {
+      // aqui realiza la consulta al servicio con las estrellas seleccionadas
+      hotelesService.getHotelByEstrellas(array).$promise.then(
+        function(data) {
+          self.hoteles = data;
+          self.showSpinner = false;
+        },
+        function(err) {
+          self.showSpinner = false;
+        }
+      )
+    }
+
 
     self.starBusqueda = [];
-    self.clickStar = function() {
+
+    self.clickStarAll = function() {
       self.showSpinner = true;
       self.starBusqueda = [];
-      if (self.allStar == true && (self.oneStar == false &&
-          self.twoStar == false &&
-          self.threeStar == false &&
-          self.fourStar == false &&
-          self.fiveStar == false)) {
+      if (self.allStar == true) {
         self.starBusqueda.push(1);
         self.starBusqueda.push(2);
         self.starBusqueda.push(3);
@@ -62,36 +72,36 @@
         self.threeStar = false;
         self.fourStar = false;
         self.fiveStar = false;
-      } else {
-        self.allStar = false;
-        if (self.oneStar == true) {
-          self.starBusqueda.push(1);
-        }
-        if (self.twoStar == true) {
-          self.starBusqueda.push(2);
-        }
-        if (self.threeStar == true) {
-          self.starBusqueda.push(3);
-        }
-        if (self.fourStar == true) {
-          self.starBusqueda.push(4);
-        }
-        if (self.fiveStar == true) {
-          self.starBusqueda.push(5);
-        }
+        self.buscarPorEstrellas(self.starBusqueda);
       }
 
-      // aqui realiza la consulta al servicio con las estrellas seleccionadas
-      hotelesService.getHotelByEstrellas(self.starBusqueda).$promise.then(
-        function(data) {
-          self.hoteles = data;
-          self.showSpinner = false;
-        },
-        function(err) {
-          self.showSpinner = false;
-        }
-      )
     }
+
+    self.clickStar = function() {
+      self.showSpinner = true;
+      self.starBusqueda = [];
+
+      self.allStar = false;
+      if (self.oneStar == true) {
+        self.starBusqueda.push(1);
+      }
+      if (self.twoStar == true) {
+        self.starBusqueda.push(2);
+      }
+      if (self.threeStar == true) {
+        self.starBusqueda.push(3);
+      }
+      if (self.fourStar == true) {
+        self.starBusqueda.push(4);
+      }
+      if (self.fiveStar == true) {
+        self.starBusqueda.push(5);
+      }
+      self.buscarPorEstrellas(self.starBusqueda);
+
+    }
+
+
 
     self.nombreHotel = "";
     self.buscarPorNombre = function() {
