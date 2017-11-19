@@ -10,7 +10,10 @@
 	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
 	<!-- endbower -->
 	<!-- inject:css -->
+	<link rel="stylesheet" href="/stylesheets/jquery-confirm.css">
+	<link rel="stylesheet" href="/stylesheets/msgBox.css">
 	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="stylesheet" href="/stylesheets/styleTab.css">
 	<!-- endinject -->
 	<title>almundo</title>
 </head>
@@ -31,49 +34,31 @@
 	<!-- endinject -->
 
 
+	<span us-spinner="{radius:10, width:4, length: 8}"></span>
 
-	<header id="main-header">
-		<a id="logo-header" href="#">
-				<img src="/data/assets/images/logo-almundo.svg" alt="almundo" />
-    </a>
-		<!-- / #logo-header -->
+	<!-- Header-->
+	<div ng-include="'templates/app/navbar.html'"></div>
 
-		<nav>
-		</nav>
-		<!-- / nav -->
-
-	</header>
-	<!-- / #main-header -->
-
-	<section id="main-content">
-
-		<article>
-			<header>
-				<div class="row">
-					<div class="col-md-8">.col-md-8</div>
-					<div class="col-md-4">.col-md-4</div>
+	<!--Contenido-->
+	<div class="container">
+		<div class="row">
+			<div ng-include="'templates/app/barra_busqueda.html'"></div>
+			<!--Contenido de cada pagina-->
+			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+				<div ng-view>
+						
 				</div>
-
-			</header>
-
-			<div class="content">
-
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-					dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 			</div>
 
-		</article>
-		<!-- / article -->
+		</div>
+	</div>
 
-	</section>
-	<!-- / #main-content -->
-
-
-
-	<footer id="main-footer">
-		<p>&copy; 2017 <a href="https://almundo.com.co/">Almundo.com</a></p>
+	<footer class="footer-propiedades">
+		<div class="container text-center">
+			<h6>AlMundo.com <small></small></h6>
+		</div>
 	</footer>
-	<!-- / #main-footer -->
+
 
 
 

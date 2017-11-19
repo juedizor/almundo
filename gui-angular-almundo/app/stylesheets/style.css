@@ -1,233 +1,184 @@
-/************
-//--------------------------------
-// GENERAL
-//-------------------------------
-************/
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Helvetica, Arial, sans-serif;
-  color: #666;
-  background: #f2f2f2;
-  font-size: 1em;
-  line-height: 1.5em;
-  padding-top: 80px;
+.submenu.li.a {
+  color: red;
 }
 
-h1 {
-  font-size: 2.3em;
-  line-height: 1.3em;
-  margin: 15px 0;
-  text-align: center;
-  font-weight: 300;
+.margin-top {
+  margin-top: 5px;
 }
 
-p {
-  margin: 0 0 1.5em 0;
+.p-extended:hover {
+  text-decoration: underline;
+  color: #9D240C;
+  cursor: pointer;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+.note {
+  margin-top: 6px;
+  padding: 0 1px;
+  font-size: 11px;
+  line-height: 15px;
 }
 
-/************
-//-------------------------------
-// CABECERA
-//-------------------------------
-************/
+.letras-formulario {
+  font-weight: normal;
+  font-size: 14px;
+}
 
-#main-header {
-  background: #333;
-  color: white;
-  height: 80px;
+.letras-formulario-bold {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.letras-editar {
+  font-weight: normal;
+  font-size: 12px;
+}
+
+a {
+  color: #005098;
+}
+
+a.a-mystyle:hover {
+  color: #9D240C;
+}
+
+span.span-error {
+  display: block;
+  color: #d44950;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+button.btn-sin-border-lef {
+  border-left: 0px solid;
+}
+
+input.input-sin-border-right {
+  border-right: 0px solid;
+}
+
+.color-morado {
+  color: #68217A;
+}
+
+.search-bar {
+  overflow: hidden;
+  position: relative;
+  top: 6px;
+  box-sizing: border-box;
+  max-width: 27%;
   width: 100%;
-  left: 0;
-  top: 0;
-  position: fixed;
-}
-
-#main-header a {
-  color: white;
-}
-
-/*
- * Logo
- */
-
-#logo-header {
-  float: left;
-  padding: 15px 0 0 20px;
-  text-decoration: none;
-}
-
-#logo-header:hover {
-  color: #0b76a6;
-}
-
-#logo-header .site-name {
-  display: block;
-  font-weight: 700;
-  font-size: 1.2em;
-}
-
-#logo-header .site-desc {
-  display: block;
-  font-weight: 300;
-  font-size: 0.8em;
-  color: #999;
-}
-
-/*
- * Navegación
- */
-
-nav {
   float: right;
+  
 }
 
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  padding-right: 20px;
+.color-letra-texto {
+  color: #565656;
 }
 
-nav ul li {
-  display: inline-block;
-  line-height: 80px;
+.color-letra-texto-bold {
+  color: #565656;
+  font-weight: bold;
 }
 
-nav ul li a {
-  display: block;
-  padding: 0 10px;
-  text-decoration: none;
+section.section-fondo {
+  background-color: #9D240C;
 }
 
-nav ul li a:hover {
-  background: #0b76a6;
+.error-input .form-control {
+  border: 1px solid;
+  border-color: #d44950;
 }
 
-/************
-//------------------------------
-// CONTENIDO
-//------------------------------
-************/
-
-/************
-//-------------------------------
-// CABECERA
-//-------------------------------
-************/
-
-#main-header {
-  background: #333;
-  color: white;
-  height: 80px;
-  width: 100%;
-  left: 0;
-  top: 0;
-  position: fixed;
+.color-letra {
+  /*letra azul*/
+  background-color: #005098;
 }
 
-#main-header a {
-  color: white;
+.color-letra-azul {
+  color: #005098;
 }
 
-/*
- * Logo
- */
-
-#logo-header {
-  float: left;
-  padding: 15px 0 0 20px;
-  text-decoration: none;
+.color-letra-roja {
+  color: #9D240C;
 }
 
-#logo-header:hover {
-  color: #0b76a6;
+.color-letra-verde {
+  color: #368632;
 }
 
-#logo-header .site-name {
-  display: block;
-  font-weight: 700;
-  font-size: 1.2em;
+.color-letra-alert {
+  color: #FFD422;
 }
 
-#logo-header .site-desc {
-  display: block;
-  font-weight: 300;
-  font-size: 0.8em;
-  color: #999;
+.color-letra-negra {
+  color: #000000;
 }
 
-/*
- * Navegación
- */
-
-nav {
-  float: right;
+.color-letra-naranja {
+  color: #f38230;
 }
 
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  padding-right: 20px;
-}
-
-nav ul li {
-  display: inline-block;
-  line-height: 80px;
-}
-
-nav ul li a {
-  display: block;
-  padding: 0 10px;
-  text-decoration: none;
-}
-
-nav ul li a:hover {
-  background: #0b76a6;
-}
-
-/************
-//------------------------------
-// CONTENIDO
-//------------------------------
-************/
-
-#main-content {
-  background: white;
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-}
-
-#main-content header, #main-content .content {
-  padding: 40px;
-}
-
-/************
-//-----------------------------
-// PIE PÁGINA
-//-----------------------------
-************/
-
-#main-footer {
-  background: #333;
-  color: white;
+.color-letra-naranja-bold {
+  color: #f38230;
+  font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
 }
 
-#main-footer p {
-  margin: 0;
+/*letra roja*/
+
+.color-hover {
+  background-color: #9D240C;
 }
 
-#main-footer a {
-  color: white;
+footer.footer-propiedades {
+  border-bottom: 5px solid;
+  border-color: #005098;
+}
+
+nav.navbar-propiedades {
+  background-color: #192D84;
+  border: 0px solid;
+}
+
+.header-color {
+  background-color: #EEEEF2;
+}
+
+.border-button {
+  border: 0px solid;
+  border-bottom: 5px solid;
+  border-color: #005098;
+}
+
+.border-top {
+  border: 0px solid;
+  border-top: 6px solid;
+  border-color: #005098;
+}
+
+input.search {
+  padding-left: 25px;
+  background-repeat: no-repeat;
+  background-image: url(../Imagenes/carta.png);
+  background-position-y: 10px;
+  background-position-x: 5px;
+}
+
+button.btn-transparente {
+  background-color: transparent;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.curso-pointer {
+  cursor: pointer;
 }
