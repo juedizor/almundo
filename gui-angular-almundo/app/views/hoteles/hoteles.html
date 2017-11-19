@@ -9,11 +9,11 @@
         <span class="color-letra-azul">{{hotel.name}}</span>
         <br>
 
-        <div class="row">
-          <div ng-if="main.repeat(hotel.stars)">
-            <div class="col-md-2" ng-repeat="stars in main.estrellas">
+        <div ng-if="main.repeat(hotel.stars)">
+          <div class="row">
+            <div ng-repeat="stars in main.estrellas">
               <span>
-                  <img style="width: 128%; height: 128%;" class= "icon" ng-src="{{main.stars}}{{stars}}.svg"
+                  <img style="width: 10%; height: 10%;float: left;" class= "icon" ng-src="{{main.stars}}{{stars}}.svg"
                   alt="{{stars}}" />
               </span>
             </div>
@@ -22,9 +22,9 @@
 
         <br>
         <div class="row">
-          <div class="col-md-2" ng-repeat="amenities in hotel.amenities">
+          <div ng-repeat="amenities in hotel.amenities">
             <span>
-                <img style="width: 128%; height: 128%;" ng-src="{{main.amenities}}{{amenities}}.svg"
+                <img style="width: 8%; height: 8%;float:left" ng-src="{{main.amenities}}{{amenities}}.svg"
                 alt="{{amenities}}" />
             </span>
           </div>
@@ -63,6 +63,3 @@
 </div>
 <div class="clearfix visible-xs-block"></div>
 </div>
-
-
-{{main.hoteles }} | json

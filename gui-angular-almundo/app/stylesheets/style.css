@@ -27,6 +27,7 @@
 .letras-formulario-bold {
   font-weight: bold;
   font-size: 14px;
+
 }
 
 .letras-editar {
@@ -70,7 +71,7 @@ input.input-sin-border-right {
   max-width: 27%;
   width: 100%;
   float: right;
-  
+
 }
 
 .color-letra-texto {
@@ -165,6 +166,7 @@ input.search {
   background-image: url(../Imagenes/carta.png);
   background-position-y: 10px;
   background-position-x: 5px;
+
 }
 
 button.btn-transparente {
@@ -181,4 +183,18 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 
 .curso-pointer {
   cursor: pointer;
+}
+
+.busqueda{
+    background-image: url('../data/assets/icons/filters/search.svg');
+    height: 12px;
+    width: 12px;
+    position: absolute
+}
+
+.estrella{
+    background-image: url('../data/assets/icons/filters/star.svg');
+    height: 12px;
+    width: 12px;
+    position: absolute
 }

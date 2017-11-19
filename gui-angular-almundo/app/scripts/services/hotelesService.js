@@ -12,6 +12,12 @@
           nombre: "@nombre"
         },
         isArray: true
+      },
+      getHotelByEstrellas: {
+        url: urlRest + "/hoteles/estrellas",
+        method: 'POST',
+        params: {},
+        isArray: true
       }
     });
   }

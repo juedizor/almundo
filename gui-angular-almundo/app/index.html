@@ -21,10 +21,14 @@
 <body>
 	<!-- bower:js -->
 	<script src="lib/angular/angular.js"></script>
+	<script src="lib/angular-resource/angular-resource.js"></script>
 	<script src="lib/jquery/dist/jquery.js"></script>
 	<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 	<script src="lib/angular-route/angular-route.js"></script>
-	<script src="lib/angular-resource/angular-resource.js"></script>
+	<script src="lib/angular-animate/angular-animate.js"></script>
+	<script src="lib/angular-sanitize/angular-sanitize.js"></script>
+	<script src="lib/angular-spinner/dist/angular-spinner.min.js"></script>
+	<script src="lib/angular-loading-spinner/angular-loading-spinner.js"></script>
 	<!-- endbower -->
 	<!-- inject:js -->
 	<script src="/scripts/app.js"></script>
@@ -34,7 +38,7 @@
 	<!-- endinject -->
 
 
-	<span us-spinner="{radius:10, width:4, length: 8}"></span>
+	<span us-spinner="{radius:10, width:4, length: 8}" spinner-on="main.showSpinner"></span>
 
 	<!-- Header-->
 	<div ng-include="'templates/app/navbar.html'"></div>
@@ -46,7 +50,7 @@
 			<!--Contenido de cada pagina-->
 			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 				<div ng-view>
-						
+
 				</div>
 			</div>
 

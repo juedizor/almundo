@@ -6,10 +6,6 @@
       templateUrl: 'views/hoteles/hoteles.html',
       controller: 'mainCtrl',
       controllerAs: 'mainCtrl'
-    }).when('/hoteles/:nombre', {
-      templateUrl: 'views/hoteles/hoteles.html',
-      controller: 'busquedaNombreCtrl',
-      controllerAs: 'bNombreCtrl'
     }).otherwise({
       redirectTo: '/'
     })
