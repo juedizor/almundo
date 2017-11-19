@@ -4,8 +4,8 @@
 	function config($routeProvider) {
 		$routeProvider.when('/hoteles', {
 			templateUrl: 'views/hoteles/hoteles.html',
-			controller: 'hotelesController',
-			controllerAs: 'hotelCtrl'
+			controller: 'mainCtrl',
+			controllerAs: 'mainCtrl'
 		}).otherwise({ redirectTo: '/' })
 	}
 
