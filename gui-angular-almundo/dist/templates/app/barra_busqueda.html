@@ -1,0 +1,100 @@
+<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom:10px;
+    padding-top:10px;box-shadow: 3px 3px 5px 2px #dae0e4;">
+      <div style="text-align:left; font-weight: bold;
+      font-size: 12px; ">
+        <span>Filtros</span>
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom:10px;
+    padding-top:10px;box-shadow: 3px 3px 5px 2px #dae0e4;">
+      <div style="text-align:left; font-weight: bold;
+      font-size: 12px; ">
+        <div class="busqueda"></div>
+        <span style="padding-left:15px;" class="color-letra-azul">Nombre hotel</span>
+
+      </div>
+      <div style="padding-top:10px;">
+        <div class="row">
+          <div class="col-md-8">
+            <input class="form-control" ng-change="main.validarVacio()" type="text" ng-model="main.nombreHotel" placeholder="ingrese el nombre del hotel">
+          </div>
+
+          <div class="col-md-2">
+            <button type="button" ng-click="main.buscarPorNombre()" class="btn btn-primary">
+              <span style="font-weight: bold;">Aceptar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-xs-12 col-sm-12 col-md-12" style="padding-bottom:10px;
+    padding-top:10px;box-shadow: 3px 3px 5px 2px #dae0e4;">
+      <div style="text-align:left; font-weight: bold;
+      font-size: 12px; ">
+        <div class="estrella"></div>
+        <span style="padding-left:15px;" class="color-letra-azul">Estrellas</span>
+
+      </div>
+      <div style="padding-top:10px;">
+        <input type="checkbox" ng-click="main.clickStarAll()" ng-model="main.allStar">
+        <span>Todas las estrellas</span>
+      </div>
+      <div style="padding-top:10px;">
+        <input type="checkbox" ng-click="main.clickStar()" ng-model="main.fiveStar">
+        <span>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+        </span>
+      </div>
+
+      <div style="padding-top:10px;">
+        <input type="checkbox" ng-click="main.clickStar()" ng-model="main.fourStar">
+        <span>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+        </span>
+      </div>
+
+      <div style="padding-top:10px;">
+        <input type="checkbox" ng-click="main.clickStar()" ng-model="main.threeStar">
+        <span>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+        </span>
+      </div>
+
+      <div style="padding-top:10px;">
+        <input type="checkbox" ng-click="main.clickStar()" ng-model="main.twoStar">
+        <span>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+        </span>
+      </div>
+
+      <div style="padding-top:10px;">
+        <input type="checkbox" ng-click="main.clickStar()" ng-model="main.oneStar">
+        <span>
+          <img style="width: 5%; height: 5%;" src="../../data/assets/icons/filters/star.svg"/>
+        </span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+</div>

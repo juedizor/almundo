@@ -2,66 +2,73 @@
 <html lang="en" ng-app="almundo" ng-controller="mainCtrl as main">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<!-- bower:css -->
-	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
-	<!-- endbower -->
-	<!-- inject:css -->
-	<link rel="stylesheet" href="/stylesheets/jquery-confirm.css">
-	<link rel="stylesheet" href="/stylesheets/msgBox.css">
-	<link rel="stylesheet" href="/stylesheets/style.css">
-	<link rel="stylesheet" href="/stylesheets/styleTab.css">
-	<!-- endinject -->
-	<title>almundo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- build:css css/style.min.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbower -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/stylesheets/jquery-confirm.css">
+  <link rel="stylesheet" href="/stylesheets/msgBox.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/styleTab.css">
+  <!-- endinject -->
+  <!-- endbuild -->
+  <title>almundo</title>
 </head>
 
 <body>
-	<!-- bower:js -->
-	<script src="lib/angular/angular.js"></script>
-	<script src="lib/angular-resource/angular-resource.js"></script>
-	<script src="lib/jquery/dist/jquery.js"></script>
-	<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-	<script src="lib/angular-route/angular-route.js"></script>
-	<script src="lib/angular-animate/angular-animate.js"></script>
-	<script src="lib/angular-sanitize/angular-sanitize.js"></script>
-	<script src="lib/angular-spinner/dist/angular-spinner.min.js"></script>
-	<script src="lib/angular-loading-spinner/angular-loading-spinner.js"></script>
-	<!-- endbower -->
-	<!-- inject:js -->
-	<script src="/scripts/app.js"></script>
-	<script src="/scripts/routes.js"></script>
-	<script src="/scripts/services/hotelesService.js"></script>
-	<script src="/scripts/controllers/hoteles/listarHotelesCtrl.js"></script>
-	<!-- endinject -->
+	<!-- build:js js/vendor.min.js -->
+  <!-- bower:js -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/jquery/dist/jquery.js"></script>
+  <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+  <script src="lib/angular-spinner/dist/angular-spinner.min.js"></script>
+  <script src="lib/angular-loading-spinner/angular-loading-spinner.js"></script>
+  <!-- endbower -->
+	<!-- endbuild -->
+
+	<!-- build:js js/app.min.js -->
+  <!-- inject:js -->
+  <script src="/scripts/app.js"></script>
+  <script src="/scripts/routes.js"></script>
+  <script src="/scripts/services/hotelesService.js"></script>
+  <script src="/scripts/controllers/hoteles/listarHotelesCtrl.js"></script>
+  <!-- endinject -->
+	<!-- endbuild -->
 
 
-	<span us-spinner="{radius:10, width:4, length: 8}" spinner-on="main.showSpinner"></span>
+  <span us-spinner="{radius:10, width:4, length: 8}" spinner-on="main.showSpinner"></span>
 
-	<!-- Header-->
-	<div ng-include="'templates/app/navbar.html'"></div>
+  <!-- Header-->
+  <div ng-include="'templates/app/navbar.html'"></div>
 
-	<!--Contenido-->
-	<div class="container">
-		<div class="row">
-			<div ng-include="'templates/app/barra_busqueda.html'"></div>
-			<!--Contenido de cada pagina-->
-			<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-				<div ng-view>
+  <!--Contenido-->
+  <div class="container">
+    <div class="row">
+      <div ng-include="'templates/app/barra_busqueda.html'"></div>
+      <!--Contenido de cada pagina-->
+      <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+        <div ng-view>
 
-				</div>
-			</div>
+        </div>
+      </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
 
-	<footer class="footer-propiedades">
-		<div class="container text-center">
-			<h6>AlMundo.com <small></small></h6>
-		</div>
-	</footer>
+  <footer class="footer-propiedades">
+    <div class="container text-center">
+      <h6>AlMundo.com <small></small></h6>
+    </div>
+  </footer>
 
 
 

@@ -1,0 +1,65 @@
+<div ng-repeat="hotel in main.hoteles">
+  <div class="col-xs-12 pull-right" style="box-shadow: 3px 3px 5px 2px #dae0e4;">
+    <div class="row" style="padding-top: 10px">
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <img style="width: 100%; height: 60%;" ng-src="{{main.rutaImagenes}}{{hotel.image}}" alt="{{hotel.name}}" />
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <span class="color-letra-azul">{{hotel.name}}</span>
+        <br>
+
+        <div ng-if="main.repeat(hotel.stars)">
+          <div class="row">
+            <div ng-repeat="stars in main.estrellas">
+              <span>
+                  <img style="width: 10%; height: 10%;float: left;" class= "icon" ng-src="{{main.stars}}{{stars}}.svg"
+                  alt="{{stars}}" />
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <br>
+        <div class="row">
+          <div ng-repeat="amenities in hotel.amenities">
+            <span>
+                <img style="width: 8%; height: 8%;float:left" ng-src="{{main.amenities}}{{amenities}}.svg"
+                alt="{{amenities}}" />
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <span class="color-letra-negra">
+          <div style="text-align:center; font-size:10px;">Precio por
+          noche <br>por habitación
+        </div></span>
+        <br>
+
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <span class="color-letra-naranja-bold">
+          <div>
+              ARS {{hotel.price}}
+          </div>
+        </span>
+
+      </div>
+
+      <div class="col-xs-12 col-sm-12 col-md-4" style="padding-top:20px;">
+        <span class="color-letra-negra">
+          <div style="text-align:center; font-size:10px;">
+            <button type="button" class="btn btn-primary"><span style="font-weight: bold;">VER HOTEL</span></button>
+      </div>
+      </span>
+
+    </div>
+
+  </div>
+</div>
+<div class="clearfix visible-xs-block"></div>
+</div>
