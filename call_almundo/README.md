@@ -17,13 +17,13 @@ inicia el server para la atencion de llamadas.
 
 Al ejecutar la app, sobre todo la del cliente que es la que envia las llamadas simultaneas al server, el resultado debe asemejarse a algo como lo siguiente: 
 
-Cliente envia -> 217470 hora 2017-11-18T14:38:46.411
-Cliente envia -> 4097 hora 2017-11-18T14:38:46.411
-Cliente envia -> 337188 hora 2017-11-18T14:38:46.411
-Cliente envia -> 111604 hora 2017-11-18T14:38:46.411
-Cliente envia -> 362353 hora 2017-11-18T14:38:46.411
-Cliente envia -> 73805 hora 2017-11-18T14:38:46.411
-Cliente envia -> 473208 hora 2017-11-18T14:38:46.409
+ - Cliente envia -> 217470 hora 2017-11-18T14:38:46.411
+ - Cliente envia -> 4097 hora 2017-11-18T14:38:46.411
+ - Cliente envia -> 337188 hora 2017-11-18T14:38:46.411
+ - Cliente envia -> 111604 hora 2017-11-18T14:38:46.411
+ - Cliente envia -> 362353 hora 2017-11-18T14:38:46.411
+ - Cliente envia -> 73805 hora 2017-11-18T14:38:46.411
+ - Cliente envia -> 473208 hora 2017-11-18T14:38:46.409
 Cliente envia -> 139261 hora 2017-11-18T14:38:46.411
 Cliente envia -> 316554 hora 2017-11-18T14:38:46.409
 Cliente envia -> 107372 hora 2017-11-18T14:38:46.409
