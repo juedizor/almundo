@@ -37,7 +37,8 @@ Al ejecutar la app, sobre todo la del cliente que es la que envia las llamadas s
 - Cliente recibe -> LLamada atendida por el empleado Supervisor Con una duración de 5 segundos numero de telefono 73805
 - Cliente recibe -> LLamada atendida por el empleado Director Con una duración de 10 segundos numero de telefono 362353
 
-- las diez primeras lineas son las 10 solicitudes simultaneas en cuanto a llamadas hacia el server
-- las otras diez son las respuestas del server hacia el cliente. 
+
+las diez primeras lineas son las 10 solicitudes simultaneas en cuanto a llamadas hacia el server
+las otras diez son las respuestas del server hacia el cliente. 
 
 
