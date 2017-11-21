@@ -13,6 +13,8 @@ import co.com.call.empleados.dto.Supervisor;
 import co.com.call.server.IniciarServer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * clase inicial en donde se simula la cantidad de empleados disponibles, se
@@ -50,7 +52,7 @@ public class Main {
             Empleado empleado = new Director();
             LIST_EMPLEADO_DISPONIBLIDAD.put(empleado, true);
         }
-
+        
     }
 
     public static void main(String[] args) {

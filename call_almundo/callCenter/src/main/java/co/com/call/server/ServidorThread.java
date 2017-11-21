@@ -80,7 +80,7 @@ public class ServidorThread implements Runnable {
             int myRandomNumber = 0;
             myRandomNumber = r.nextInt(10 - 5 + 1) + 5;
             respuestaServidor.setMensaje("LLamada atendida por el empleado " + empleado.getClass().getSimpleName() + " Con una duración de " + myRandomNumber + " segundos");
-
+            
             /**
              * Enviando json al cliente
              */
@@ -93,6 +93,7 @@ public class ServidorThread implements Runnable {
             System.out.println("Servidor recibe llamada del numero de telefono -> " + mensajeRecibido);
             try {
                 Thread.sleep(myRandomNumber * 1000);
+                setDisponibilidadEmpleado(empleado);
             } catch (InterruptedException ex) {
                 Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -100,7 +101,6 @@ public class ServidorThread implements Runnable {
             Logger.getAnonymousLogger().warning(ex.getMessage());
         } finally {
             desconectar();
-            setDisponibilidadEmpleado(empleado);
         }
     }
 
@@ -114,7 +114,7 @@ public class ServidorThread implements Runnable {
             Empleado empleadoDisponibilidad = empleadoDisponible.getKey();
             Boolean isDisponible = empleadoDisponible.getValue();
             if (empleadoDisponibilidad == empleado) {
-                Main.LIST_EMPLEADO_DISPONIBLIDAD.put(empleadoDisponibilidad, true);
+                Main.LIST_EMPLEADO_DISPONIBLIDAD.replace(empleadoDisponibilidad, false, true);
             }
         });
     }

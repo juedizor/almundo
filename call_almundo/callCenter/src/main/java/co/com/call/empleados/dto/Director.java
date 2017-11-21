@@ -9,6 +9,6 @@ package co.com.call.empleados.dto;
  * clase del empleado director
  * @author julio.izquierdo
  */
-public class Director extends Empleado {
-    
+public class Director extends Empleado{
+
 }

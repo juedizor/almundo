@@ -60,21 +60,21 @@ public class ServidorSocket {
             if (empleadoDisponibilidad instanceof Operador) {
                 if (isDisponible) {
                     Empleado operador = (Operador) empleadoDisponibilidad;
-                    Main.LIST_EMPLEADO_DISPONIBLIDAD.put(operador, false);
+                    Main.LIST_EMPLEADO_DISPONIBLIDAD.replace(operador, true, false);
                     return operador;
                 }
             }
             if (empleadoDisponibilidad instanceof Supervisor) {
                 if (isDisponible) {
                     Empleado supervisor = (Supervisor) empleadoDisponibilidad;
-                    Main.LIST_EMPLEADO_DISPONIBLIDAD.put(supervisor, false);
+                    Main.LIST_EMPLEADO_DISPONIBLIDAD.replace(supervisor, true, false);
                     return supervisor;
                 }
             }
             if (empleadoDisponibilidad instanceof Director) {
                 if (isDisponible) {
                     Empleado director = (Director) empleadoDisponibilidad;
-                    Main.LIST_EMPLEADO_DISPONIBLIDAD.put(director, false);
+                    Main.LIST_EMPLEADO_DISPONIBLIDAD.replace(director, true, false);
                     return director;
                 }
             }

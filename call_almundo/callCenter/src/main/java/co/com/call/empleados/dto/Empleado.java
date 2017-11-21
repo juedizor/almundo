@@ -9,6 +9,11 @@ package co.com.call.empleados.dto;
  * clase principal de empleados del call center
  * @author julio.izquierdo
  */
-public class Empleado {
+public class Empleado implements Comparable<Empleado>{
+
+    @Override
+    public int compareTo(Empleado o) {
+        return 1;
+    }
     
 }
