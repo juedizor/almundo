@@ -12,7 +12,7 @@ a traves de la instruccion git clone.
 		proyecto donde se encuentra la aplicacion front desarrollada para el consumo de la api anterior
 	- call_almundo
 		proyecto java en donde se evidencia la simulacion del call center, utilizando socket e hilos. 
-
+git pu
 3. Para la ejecucion de la api se debe tener en cuenta los siguientes pasos: 
 	- Entrar al directorio a traves de la consola de preferencia 
 	- Una vez ubicados en la ruta realizar un movimiento a la ruta /app 

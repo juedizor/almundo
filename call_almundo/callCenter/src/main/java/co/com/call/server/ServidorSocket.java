@@ -1,18 +1,15 @@
 package co.com.call.server;
 
-import co.com.call.dispatcher.Main;
 import co.com.call.empleados.dto.Director;
 import co.com.call.empleados.dto.Empleado;
 import co.com.call.empleados.dto.Operador;
 import co.com.call.empleados.dto.Supervisor;
-import co.com.call.respuestas.dto.RespuestaServidor;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Semaphore;
 import java.util.logging.Logger;
 
@@ -28,22 +25,19 @@ public class ServidorSocket {
     private List<Integer> listNumeroLlamadas;
     private static int contadorLlamadas;
     private Semaphore semaphore;
+    private Semaphore semaphoreMain;
 
     private List<Empleado> listOperadores;
     private List<Empleado> listSupervisors;
     private List<Empleado> listDirectores;
 
-    public ServidorSocket() {
+    public ServidorSocket(Semaphore semaphoreMain) {
         listOperadores = new ArrayList<>();
-        Empleado operador = new Operador();
-        listOperadores.add(operador);
-        operador = new Operador();
-        listOperadores.add(operador);
-        operador = new Operador();
+        Empleado operador = new Operador(listOperadores, semaphoreMain);
         listOperadores.add(operador);
 
         listSupervisors = new ArrayList<>();
-        Empleado supervisor = new Empleado();
+        Empleado supervisor = new Supervisor(listSupervisors, semaphoreMain);
         listSupervisors.add(supervisor);
         supervisor = new Empleado();
         listSupervisors.add(supervisor);
@@ -51,13 +45,14 @@ public class ServidorSocket {
         listSupervisors.add(supervisor);
 
         listDirectores = new ArrayList<>();
-        Empleado director = new Empleado();
+        Empleado director = new Director(listDirectores, semaphoreMain);
         listDirectores.add(director);
         director = new Empleado();
         listDirectores.add(director);
         director = new Empleado();
         listDirectores.add(director);
-        semaphore = new Semaphore(10);
+        semaphore = new Semaphore(1);
+        this.semaphoreMain = semaphoreMain;
 
     }
 
@@ -65,9 +60,8 @@ public class ServidorSocket {
      * Constructor
      *
      * @param serverSocket
-     * @param respuestaServidor
      */
-    public void conectar(ServerSocket serverSocket, RespuestaServidor respuestaServidor) {
+    public void conectar(ServerSocket serverSocket) {
         try {
             System.out.println("Conectado servidor");
             listNumeroLlamadas = new LinkedList<>();
@@ -76,9 +70,9 @@ public class ServidorSocket {
              */
             Socket socket = serverSocket.accept();
             listNumeroLlamadas.add(contadorLlamadas++);
-            Thread thread = new Thread(new ServidorThread(socket, listOperadores, listSupervisors, listDirectores, listNumeroLlamadas, semaphore));
+            Thread thread = new Thread(new ServidorThread(socket, listOperadores, 
+                    listSupervisors, listDirectores, listNumeroLlamadas, semaphore, semaphoreMain));
             thread.start();
-
         } catch (IOException ex) {
             Logger.getAnonymousLogger().warning(ex.getMessage());
         } catch (Exception ex) {

@@ -1,14 +1,10 @@
 package co.com.call.server;
 
-import co.com.call.dispatcher.Main;
 import co.com.call.empleados.dto.Empleado;
-import co.com.call.empleados.dto.Operador;
-import co.com.call.respuestas.dto.RespuestaServidor;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
@@ -26,12 +22,12 @@ public class ServidorThread implements Runnable {
     private Socket socket;
     private ObjectOutputStream outputStream = null; // Salida
     private ObjectInputStream inputStream = null; // Entrada
-    private RespuestaServidor respuestaServidor;
 
     private List<Empleado> listOperadores;
     private List<Empleado> listSupervisores;
     private List<Empleado> listDirectores;
     private Semaphore semaphore;
+    private Semaphore semaphoreMain;
 
     private List<Integer> listNumeroLlamadas;
 
@@ -39,19 +35,25 @@ public class ServidorThread implements Runnable {
      * Constructor
      *
      * @param socket
-     * @param respuestaServidor
+     * @param listOperadores
+     * @param listSupervisores
+     * @param listDirectores
+     * @param listNumeroLlamadas
+     * @param semaphore
+     * @param semaphoreMain
      */
     public ServidorThread(Socket socket, List<Empleado> listOperadores,
             List<Empleado> listSupervisores,
             List<Empleado> listDirectores,
             List<Integer> listNumeroLlamadas,
-            Semaphore semaphore) {
+            Semaphore semaphore, Semaphore semaphoreMain) {
         this.socket = socket;
         this.listOperadores = listOperadores;
         this.listSupervisores = listSupervisores;
         this.listDirectores = listDirectores;
         this.listNumeroLlamadas = listNumeroLlamadas;
         this.semaphore = semaphore;
+        this.semaphoreMain = semaphoreMain;
         try {
             /**
              * Objeto para enviar mensaje al cliente
@@ -94,86 +96,38 @@ public class ServidorThread implements Runnable {
     public void run() {
         try {
             Random r = new Random();
-            int myRandomNumber = 0;
+            int myRandomNumber;
             myRandomNumber = r.nextInt(10 - 5 + 1) + 5;
+
             semaphore.acquire();
             String empleado = "";
             while (listNumeroLlamadas.size() > 0) {
+                semaphoreMain.acquire();
                 // aqui hay llamadas por atender, quien la atiende
                 if (!listOperadores.isEmpty()) {
                     // la atiende un operador
                     listNumeroLlamadas.remove(0);
                     empleado = "operador";
-                    listOperadores.remove(0);
-                    if (listSupervisores.isEmpty()) {
-                        Empleado supervisor = new Empleado();
-                        listSupervisores.add(supervisor);
-                        supervisor = new Empleado();
-                        listSupervisores.add(supervisor);
-                        supervisor = new Empleado();
-                        listSupervisores.add(supervisor);
-                    }
-
-                    if (listDirectores.isEmpty()) {
-                        Empleado director = new Empleado();
-                        listDirectores.add(director);
-                        director = new Empleado();
-                        listDirectores.add(director);
-                        director = new Empleado();
-                        listDirectores.add(director);
-                    }
-
+                    Empleado empleadoOperador = listOperadores.remove(0);
+                    empleadoOperador.start();
                     break;
                 } else if (!listSupervisores.isEmpty()) {
                     // la atiende un supervisor
                     listNumeroLlamadas.remove(0);
                     empleado = "supervisor";
-                    listSupervisores.remove(0);
-                    if (listOperadores.isEmpty()) {
-                        Empleado operador = new Operador();
-                        listOperadores.add(operador);
-                        operador = new Operador();
-                        listOperadores.add(operador);
-                        operador = new Operador();
-                        listOperadores.add(operador);
-                    }
-
-                    if (listDirectores.isEmpty()) {
-                        Empleado director = new Empleado();
-                        listDirectores.add(director);
-                        director = new Empleado();
-                        listDirectores.add(director);
-                        director = new Empleado();
-                        listDirectores.add(director);
-                        semaphore = new Semaphore(1);
-                    }
-
+                    Empleado empleadoSupervisor = listSupervisores.remove(0);
+                    empleadoSupervisor.start();
                     break;
                 } else if (!listDirectores.isEmpty()) {
                     // la atiende un director
                     listNumeroLlamadas.remove(0);
                     empleado = "Director";
-                    listDirectores.remove(0);
-                    if (listOperadores.isEmpty()) {
-                        Empleado operador = new Operador();
-                        listOperadores.add(operador);
-                        operador = new Operador();
-                        listOperadores.add(operador);
-                        operador = new Operador();
-                        listOperadores.add(operador);
-                    }
-
-                    if (listSupervisores.isEmpty()) {
-                        Empleado supervisor = new Empleado();
-                        listSupervisores.add(supervisor);
-                        supervisor = new Empleado();
-                        listSupervisores.add(supervisor);
-                        supervisor = new Empleado();
-                        listSupervisores.add(supervisor);
-                    }
+                    Empleado empleadoDirector = listDirectores.remove(0);
+                    empleadoDirector.start();
                     break;
+                } else {
+                    semaphoreMain.release();
                 }
-
             }
 
             /**
@@ -186,11 +140,6 @@ public class ServidorThread implements Runnable {
              */
             String mensajeRecibido = inputStream.readObject().toString();
             System.out.println("Servidor recibe llamada del numero de telefono -> " + mensajeRecibido);
-            try {
-                Thread.sleep(myRandomNumber * 1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getAnonymousLogger().warning(ex.getMessage());
         } catch (InterruptedException ex) {
@@ -201,20 +150,5 @@ public class ServidorThread implements Runnable {
 
         semaphore.release();
 
-    }
-
-    /**
-     * metodo que maneja la diponibilidad de cada uno de los empleados
-     *
-     * @param empleado
-     */
-    private void setDisponibilidadEmpleado(Empleado empleado) {
-        Main.LIST_EMPLEADO_DISPONIBLIDAD.entrySet().forEach((empleadoDisponible) -> {
-            Empleado empleadoDisponibilidad = empleadoDisponible.getKey();
-            Boolean isDisponible = empleadoDisponible.getValue();
-            if (empleadoDisponibilidad == empleado) {
-                Main.LIST_EMPLEADO_DISPONIBLIDAD.put(empleadoDisponibilidad, true);
-            }
-        });
     }
 }

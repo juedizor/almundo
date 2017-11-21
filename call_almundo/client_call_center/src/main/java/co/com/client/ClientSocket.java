@@ -64,7 +64,6 @@ public class ClientSocket implements Runnable {
              */
             outputStream.writeObject(llamadaCliente.getNumeroTelefono());
             outputStream.flush();
-
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getAnonymousLogger().warning(ex.getMessage());
         } finally {

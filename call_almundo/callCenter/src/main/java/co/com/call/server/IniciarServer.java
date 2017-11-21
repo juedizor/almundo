@@ -8,6 +8,7 @@ package co.com.call.server;
 import co.com.call.respuestas.dto.RespuestaServidor;
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Logger;
 
 /**
@@ -19,9 +20,12 @@ public class IniciarServer {
 
     private final ServidorSocket myServidor;
     private RespuestaServidor respuestaServidor;
+    private final Semaphore semaphoreMain;
 
     public IniciarServer() {
-        myServidor = new ServidorSocket();
+        semaphoreMain = new Semaphore(10);
+        myServidor = new ServidorSocket(semaphoreMain);
+
     }
 
     /**
@@ -35,7 +39,7 @@ public class IniciarServer {
             Logger.getAnonymousLogger().warning(e.getMessage());
         }
         while (true) {
-            myServidor.conectar(serverSocket, respuestaServidor);
+            myServidor.conectar(serverSocket);
         }
     }
 
