@@ -86,33 +86,4 @@ public class ServidorSocket {
         }
     }
 
-    private Empleado getEmpleadoDisponible() {
-        for (Map.Entry<Empleado, Boolean> empleado : Main.LIST_EMPLEADO_DISPONIBLIDAD.entrySet()) {
-            Empleado empleadoDisponibilidad = empleado.getKey();
-            Boolean isDisponible = empleado.getValue();
-            if (empleadoDisponibilidad instanceof Operador) {
-                if (isDisponible) {
-                    Empleado operador = (Operador) empleadoDisponibilidad;
-                    Main.LIST_EMPLEADO_DISPONIBLIDAD.put(operador, false);
-                    return operador;
-                }
-            }
-            if (empleadoDisponibilidad instanceof Supervisor) {
-                if (isDisponible) {
-                    Empleado supervisor = (Supervisor) empleadoDisponibilidad;
-                    Main.LIST_EMPLEADO_DISPONIBLIDAD.put(supervisor, false);
-                    return supervisor;
-                }
-            }
-            if (empleadoDisponibilidad instanceof Director) {
-                if (isDisponible) {
-                    Empleado director = (Director) empleadoDisponibilidad;
-                    Main.LIST_EMPLEADO_DISPONIBLIDAD.put(director, false);
-                    return director;
-                }
-            }
-        }
-        return null;
-    }
-
 }

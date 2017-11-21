@@ -21,7 +21,7 @@ public class IniciarCliente {
     private ClientSocket myClient;
     private final ExecutorService executor; // usado para la ejecucion concurrente de tareas
     private static final int CANT_MAX_THREAD = 10; // numero de hilos simultaneos soportados
-    private static final int TAREAS_MAXIMAS = 10; // cantidad de tareas soportadas
+    private static final int TAREAS_MAXIMAS = 20; // cantidad de tareas soportadas
 
     public IniciarCliente() {
         ArrayBlockingQueue<Runnable> waitqueue = new ArrayBlockingQueue<>(CANT_MAX_THREAD);
@@ -30,7 +30,7 @@ public class IniciarCliente {
     }
 
     public void iniciarCliente() throws InterruptedException {
-        for (int i = 0; i < CANT_MAX_THREAD; i++) {
+        for (int i = 0; i < 20; i++) {
             myClient = new ClientSocket();
             executor.submit(myClient);
         }

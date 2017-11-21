@@ -121,7 +121,6 @@ public class ServidorThread implements Runnable {
                         listDirectores.add(director);
                         director = new Empleado();
                         listDirectores.add(director);
-                        semaphore = new Semaphore(1);
                     }
 
                     break;
