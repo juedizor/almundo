@@ -86,6 +86,7 @@ Cliente recibe -> LLamada atendida por el empleado supervisor Con una duración 
 Cliente recibe -> LLamada atendida por el empleado Director Con una duración de 7 segundos numero de telefono 16810
 
 
+
 - Se visualizara el cliente enviado llamadas de manera simultanea, y el cliente recibiendo quien atendio su llamada y que tiempo, se demoro en atenderla. 
 
 
