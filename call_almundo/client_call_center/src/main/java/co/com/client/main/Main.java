@@ -13,9 +13,12 @@ import co.com.client.IniciarCliente;
  * @author julio
  */
 public class Main {
+    
+    private static final int CANT_LLAMADAS_AL_TIEMPO = 15;
+    private static final int CANT_TAREAS_PERMITIDAS = 15;
 
     public static void main(String[] args) throws InterruptedException {
-        new IniciarCliente(10, 15).iniciarCliente();
+        new IniciarCliente(CANT_LLAMADAS_AL_TIEMPO, CANT_TAREAS_PERMITIDAS).iniciarCliente();
     }
 
 }
