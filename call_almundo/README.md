@@ -13,21 +13,30 @@ Tener en cuenta en la ejecucion:
 1. Primero ejecutar el proyecto callCenter en el cual se debe ejecutar a traves de la clase co.com.call.dispatcher.Main que es donde se 
 inicia el server para la atencion de llamadas. 
 
-	package co.com.call.dispatcher;
+```Java
+package co.com.call.dispatcher;
 
-	import co.com.call.server.IniciarServer;
+import co.com.call.server.IniciarServer;
 
 
-	public class Main {
-    
-	    private static final int NUM_HILOS_SIMULTANEOS = 10;
+public class Main {
 
-	    public static void main(String[] args) {
-		new IniciarServer(NUM_HILOS_SIMULTANEOS).arrancarServidor(); // inicio del servidor para la atencion de llamadas
+	private static final int NUM_HILOS_SIMULTANEOS = 10;
 
-	    }
+	public static void main(String[] args) {
+	new IniciarServer(NUM_HILOS_SIMULTANEOS).arrancarServidor(); // inicio del servidor para la atencion de llamadas
 
 	}
+
+}
+```
+
+```ruby
+require 'redcarpet'
+markdown = Redcarpet.new("Hello World!")
+puts markdown.to_html
+```
+
 
 Se visualiza la variable NUM_HILOS_SIMULTANEOS que es la cantidad de hilos que aceptaria a la vez para atencio de llamadas el servidor. 
 
@@ -36,26 +45,22 @@ Se visualiza la variable NUM_HILOS_SIMULTANEOS que es la cantidad de hilos que a
 10 solicitudes simultaneas al server para ser atendidas. 
 
 
+```Java
+package co.com.client.main;
 
-	package co.com.client.main;
+import co.com.client.IniciarCliente;
 
-	import co.com.client.IniciarCliente;
+public class Main {
 
-	/**
-	 * Inicio de la aplicacion cliente para el envio de las llamadas al server
-	 *
-	 * @author julio
-	 */
-	public class Main {
-    
-    private static final int CANT_LLAMADAS_AL_TIEMPO = 10;
-    private static final int CANT_TAREAS_PERMITIDAS = 10;
+	private static final int CANT_LLAMADAS_AL_TIEMPO = 10;
+	private static final int CANT_TAREAS_PERMITIDAS = 10;
 
-    public static void main(String[] args) throws InterruptedException {
-        new IniciarCliente(CANT_LLAMADAS_AL_TIEMPO, CANT_TAREAS_PERMITIDAS).iniciarCliente();
-    }
-
+	public static void main(String[] args) throws InterruptedException {
+		new IniciarCliente(CANT_LLAMADAS_AL_TIEMPO, CANT_TAREAS_PERMITIDAS).iniciarCliente();
 	}
+
+}
+```
 
 Con esta clase se inicia el cliente, en donde se le indica que seran 10 como numero de llamadas que se enviaran al tiempo al server.
 
