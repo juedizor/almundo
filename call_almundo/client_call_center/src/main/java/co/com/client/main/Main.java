@@ -15,7 +15,7 @@ import co.com.client.IniciarCliente;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-        new IniciarCliente().iniciarCliente();
+        new IniciarCliente(10, 15).iniciarCliente();
     }
 
 }

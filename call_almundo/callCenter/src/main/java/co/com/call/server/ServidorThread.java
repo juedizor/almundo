@@ -1,13 +1,13 @@
 package co.com.call.server;
 
-import co.com.call.dispatcher.Main;
 import co.com.call.empleados.dto.Empleado;
-import co.com.call.respuestas.dto.RespuestaServidor;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,19 +22,38 @@ public class ServidorThread implements Runnable {
     private Socket socket;
     private ObjectOutputStream outputStream = null; // Salida
     private ObjectInputStream inputStream = null; // Entrada
-    private RespuestaServidor respuestaServidor;
-    private Empleado empleado;
+
+    private List<Empleado> listOperadores;
+    private List<Empleado> listSupervisores;
+    private List<Empleado> listDirectores;
+    private Semaphore semaphore;
+    private Semaphore semaphoreMain;
+
+    private List<Integer> listNumeroLlamadas;
 
     /**
      * Constructor
      *
      * @param socket
-     * @param respuestaServidor
+     * @param listOperadores
+     * @param listSupervisores
+     * @param listDirectores
+     * @param listNumeroLlamadas
+     * @param semaphore
+     * @param semaphoreMain
      */
-    public ServidorThread(Socket socket, RespuestaServidor respuestaServidor, Empleado empleado) {
+    public ServidorThread(Socket socket, List<Empleado> listOperadores,
+            List<Empleado> listSupervisores,
+            List<Empleado> listDirectores,
+            List<Integer> listNumeroLlamadas,
+            Semaphore semaphore, Semaphore semaphoreMain) {
         this.socket = socket;
-        this.respuestaServidor = respuestaServidor;
-        this.empleado = empleado;
+        this.listOperadores = listOperadores;
+        this.listSupervisores = listSupervisores;
+        this.listDirectores = listDirectores;
+        this.listNumeroLlamadas = listNumeroLlamadas;
+        this.semaphore = semaphore;
+        this.semaphoreMain = semaphoreMain;
         try {
             /**
              * Objeto para enviar mensaje al cliente
@@ -77,45 +96,59 @@ public class ServidorThread implements Runnable {
     public void run() {
         try {
             Random r = new Random();
-            int myRandomNumber = 0;
+            int myRandomNumber;
             myRandomNumber = r.nextInt(10 - 5 + 1) + 5;
-            respuestaServidor.setMensaje("LLamada atendida por el empleado " + empleado.getClass().getSimpleName() + " Con una duración de " + myRandomNumber + " segundos");
-            
+
+            semaphore.acquire();
+            String empleado = "";
+            while (listNumeroLlamadas.size() > 0) {
+                semaphoreMain.acquire();
+                // aqui hay llamadas por atender, quien la atiende
+                if (!listOperadores.isEmpty()) {
+                    // la atiende un operador
+                    listNumeroLlamadas.remove(0);
+                    empleado = "operador";
+                    Empleado empleadoOperador = listOperadores.remove(0);
+                    empleadoOperador.start();
+                    break;
+                } else if (!listSupervisores.isEmpty()) {
+                    // la atiende un supervisor
+                    listNumeroLlamadas.remove(0);
+                    empleado = "supervisor";
+                    Empleado empleadoSupervisor = listSupervisores.remove(0);
+                    empleadoSupervisor.start();
+                    break;
+                } else if (!listDirectores.isEmpty()) {
+                    // la atiende un director
+                    listNumeroLlamadas.remove(0);
+                    empleado = "Director";
+                    Empleado empleadoDirector = listDirectores.remove(0);
+                    empleadoDirector.start();
+                    break;
+                } else {
+                    semaphoreMain.release();
+                }
+            }
+
             /**
              * Enviando json al cliente
              */
-            outputStream.writeObject(respuestaServidor.getMensaje());
+            outputStream.writeObject("LLamada atendida por el empleado " + empleado + " Con una duración de " + myRandomNumber + " segundos");
             outputStream.flush();
             /**
              * Mensaje recibido del cliente
              */
             String mensajeRecibido = inputStream.readObject().toString();
             System.out.println("Servidor recibe llamada del numero de telefono -> " + mensajeRecibido);
-            try {
-                Thread.sleep(myRandomNumber * 1000);
-                setDisponibilidadEmpleado(empleado);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
-            }
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getAnonymousLogger().warning(ex.getMessage());
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ServidorThread.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             desconectar();
         }
-    }
 
-    /**
-     * metodo que maneja la diponibilidad de cada uno de los empleados
-     *
-     * @param empleado
-     */
-    private void setDisponibilidadEmpleado(Empleado empleado) {
-        Main.LIST_EMPLEADO_DISPONIBLIDAD.entrySet().forEach((empleadoDisponible) -> {
-            Empleado empleadoDisponibilidad = empleadoDisponible.getKey();
-            Boolean isDisponible = empleadoDisponible.getValue();
-            if (empleadoDisponibilidad == empleado) {
-                Main.LIST_EMPLEADO_DISPONIBLIDAD.replace(empleadoDisponibilidad, false, true);
-            }
-        });
+        semaphore.release();
+
     }
 }

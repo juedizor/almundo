@@ -20,17 +20,19 @@ public class IniciarCliente {
 
     private ClientSocket myClient;
     private final ExecutorService executor; // usado para la ejecucion concurrente de tareas
-    private static final int CANT_MAX_THREAD = 10; // numero de hilos simultaneos soportados
-    private static final int TAREAS_MAXIMAS = 15; // cantidad de tareas soportadas
+    private final int cantMaxThreads; // numero de hilos simultaneos soportados
+    private final int tareasEjecutar; // cantidad de tareas soportadas
 
-    public IniciarCliente() {
-        ArrayBlockingQueue<Runnable> waitqueue = new ArrayBlockingQueue<>(CANT_MAX_THREAD);
-        this.executor = new ThreadPoolExecutor(CANT_MAX_THREAD,
-                TAREAS_MAXIMAS, 1, TimeUnit.SECONDS, waitqueue);
+    public IniciarCliente(int canHilos, int maxTask) {
+        cantMaxThreads = canHilos;
+        tareasEjecutar = maxTask;
+        ArrayBlockingQueue<Runnable> waitqueue = new ArrayBlockingQueue<>(cantMaxThreads);
+        this.executor = new ThreadPoolExecutor(cantMaxThreads,
+                tareasEjecutar, 1, TimeUnit.SECONDS, waitqueue);
     }
 
     public void iniciarCliente() throws InterruptedException {
-        for (int i = 0; i < TAREAS_MAXIMAS; i++) {
+        for (int i = 0; i < tareasEjecutar; i++) {
             myClient = new ClientSocket();
             executor.submit(myClient);
         }

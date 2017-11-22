@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package co.com.client;
 
 import co.com.client.dto.LlamadaCliente;
 import co.com.client.util.Utils;
@@ -16,19 +10,23 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 import java.util.logging.Logger;
 
-/**
- * clase principal encargada de realizar la conexion y la realizacion de
- * llamadas hacia el server
- *
- * @author julio
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-public class ClientSocket implements Runnable {
 
+/**
+ *
+ * @author ASD
+ */
+public class Client {
     private Socket socket; // Conexión
     private ObjectOutputStream outputStream = null; // Salida
     private ObjectInputStream inputStream = null; // Entrada
 
-    private void conectar() {
+    private String conectar() {
+        String mensajeRecibido = "";
         try {
             /**
              * Se envia una llamada al servidor de un numero aleatorio
@@ -56,7 +54,7 @@ public class ClientSocket implements Runnable {
              * Capturamos la respuesta enviada por el servidor, relacionada a la
              * llamada hecha anteriormente
              */
-            String mensajeRecibido = inputStream.readObject().toString();
+            mensajeRecibido = inputStream.readObject().toString();
             System.out.println("Cliente recibe -> " + mensajeRecibido + " numero de telefono " + llamadaCliente.getNumeroTelefono());
 
             /**
@@ -85,11 +83,10 @@ public class ClientSocket implements Runnable {
                 Logger.getAnonymousLogger().warning(ex.getMessage());
             }
         }
+        return mensajeRecibido;
     }
 
-    @Override
-    public void run() {
-        conectar();
+    public String response() {
+        return conectar();
     }
-
 }
