@@ -13,20 +13,24 @@ Tener en cuenta en la ejecucion:
 1. Primero ejecutar el proyecto callCenter en el cual se debe ejecutar a traves de la clase co.com.call.dispatcher.Main que es donde se 
 inicia el server para la atencion de llamadas. 
 
+```Java
 package co.com.call.dispatcher;
 
 import co.com.call.server.IniciarServer;
 
+
 public class Main {
-    
-    private static final int NUM_HILOS_SIMULTANEOS = 10;
 
-    public static void main(String[] args) {
-        new IniciarServer(NUM_HILOS_SIMULTANEOS).arrancarServidor(); // inicio del servidor para la atencion de llamadas
+	private static final int NUM_HILOS_SIMULTANEOS = 10;
 
-    }
+	public static void main(String[] args) {
+	new IniciarServer(NUM_HILOS_SIMULTANEOS).arrancarServidor(); // inicio del servidor para la atencion de llamadas
+
+	}
 
 }
+```
+
 
 Se visualiza la variable NUM_HILOS_SIMULTANEOS que es la cantidad de hilos que aceptaria a la vez para atencio de llamadas el servidor. 
 
@@ -35,26 +39,22 @@ Se visualiza la variable NUM_HILOS_SIMULTANEOS que es la cantidad de hilos que a
 10 solicitudes simultaneas al server para ser atendidas. 
 
 
-
+```Java
 package co.com.client.main;
 
 import co.com.client.IniciarCliente;
 
-/**
- * Inicio de la aplicacion cliente para el envio de las llamadas al server
- *
- * @author julio
- */
 public class Main {
-    
-    private static final int CANT_LLAMADAS_AL_TIEMPO = 10;
-    private static final int CANT_TAREAS_PERMITIDAS = 10;
 
-    public static void main(String[] args) throws InterruptedException {
-        new IniciarCliente(CANT_LLAMADAS_AL_TIEMPO, CANT_TAREAS_PERMITIDAS).iniciarCliente();
-    }
+	private static final int CANT_LLAMADAS_AL_TIEMPO = 10;
+	private static final int CANT_TAREAS_PERMITIDAS = 10;
+
+	public static void main(String[] args) throws InterruptedException {
+		new IniciarCliente(CANT_LLAMADAS_AL_TIEMPO, CANT_TAREAS_PERMITIDAS).iniciarCliente();
+	}
 
 }
+```
 
 Con esta clase se inicia el cliente, en donde se le indica que seran 10 como numero de llamadas que se enviaran al tiempo al server.
 
@@ -63,7 +63,7 @@ Con esta clase se inicia el cliente, en donde se le indica que seran 10 como num
 - Una vez se hayan hecho la ejecucion de la manera indicada anteriormente con los parametros que estan actualmente se debe visualizar 
 la atencion de las 10 llamadas de la siguiente manera en consola.
 
-
+```
 Cliente envia -> 16810 hora 2017-11-21T21:15:14.092
 Cliente envia -> 53084 hora 2017-11-21T21:15:14.092
 Cliente envia -> 191714 hora 2017-11-21T21:15:14.092
@@ -84,7 +84,7 @@ Cliente recibe -> LLamada atendida por el empleado Director Con una duración de
 Cliente recibe -> LLamada atendida por el empleado operador Con una duración de 10 segundos numero de telefono 333468
 Cliente recibe -> LLamada atendida por el empleado supervisor Con una duración de 9 segundos numero de telefono 453738
 Cliente recibe -> LLamada atendida por el empleado Director Con una duración de 7 segundos numero de telefono 16810
-
+```
 
 
 - Se visualizara el cliente enviado llamadas de manera simultanea, y el cliente recibiendo quien atendio su llamada y que tiempo, se demoro en atenderla. 
@@ -93,12 +93,13 @@ Cliente recibe -> LLamada atendida por el empleado Director Con una duración de
 - En caso que se enviaran mas de 10 llamadas,  el cliente usa un ExecutorService con un pool de hilos para que envie solo los disponibles, 
 y luego los demas los mantiene en una cola, para cuando detecte que termina la ejecucion de alguno de los enviados comience con estos. 
 Por tanto si se envia mas de 10 llamadas a traves de la variable: 
-
-- private static final int CANT_TAREAS_PERMITIDAS = 15; // en este caso 15 llamadas
+	```
+	- private static final int CANT_TAREAS_PERMITIDAS = 15; // en este caso 15 llamadas
+	```
 
 Para las 15 el cliente primero enviara diez y teniendo en cuenta la disponibilidad se iran enviando las demas, al ejeuctar nuevamente los proyectos de la siguiente manera se vera algo como esto: 
 
-
+```
 Cliente envia -> 309190 hora 2017-11-21T21:23:23.246
 Cliente envia -> 207357 hora 2017-11-21T21:23:23.246
 Cliente envia -> 156330 hora 2017-11-21T21:23:23.246
@@ -129,7 +130,7 @@ Cliente recibe -> LLamada atendida por el empleado operador Con una duración de
 Cliente recibe -> LLamada atendida por el empleado Director Con una duración de 10 segundos numero de telefono 265804
 Cliente recibe -> LLamada atendida por el empleado supervisor Con una duración de 6 segundos numero de telefono 407446
 Cliente recibe -> LLamada atendida por el empleado operador Con una duración de 9 segundos numero de telefono 458500
-
+```
 
 - Donde se visualiza la atencion de cada llamada, por tanto queda solucionado si se envian mas de 10 llamadas y quedan pendientes. 
 - Otro punto importante dentro de la prueba era si ya no se encontraban empleados disponibles, este manejo lo realiza el server, dentro 
