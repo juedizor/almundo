@@ -70,7 +70,7 @@ public class ServidorSocket {
              */
             Socket socket = serverSocket.accept();
             listNumeroLlamadas.add(contadorLlamadas++);
-            Thread thread = new Thread(new ServidorThread(socket, listOperadores, 
+            Thread thread = new Thread(new ServidorThread(socket, listOperadores,
                     listSupervisors, listDirectores, listNumeroLlamadas, semaphore, semaphoreMain));
             thread.start();
         } catch (IOException ex) {

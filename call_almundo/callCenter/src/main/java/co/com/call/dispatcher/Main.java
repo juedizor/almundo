@@ -16,9 +16,11 @@ import co.com.call.server.IniciarServer;
  * @author julio
  */
 public class Main {
+    
+    private static final int NUM_HILOS_SIMULTANEOS = 10;
 
     public static void main(String[] args) {
-        new IniciarServer().arrancarServidor(); // inicio del servidor para la atencion de llamadas
+        new IniciarServer(NUM_HILOS_SIMULTANEOS).arrancarServidor(); // inicio del servidor para la atencion de llamadas
 
     }
 

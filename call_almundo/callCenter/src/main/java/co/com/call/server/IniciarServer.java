@@ -22,8 +22,8 @@ public class IniciarServer {
     private RespuestaServidor respuestaServidor;
     private final Semaphore semaphoreMain;
 
-    public IniciarServer() {
-        semaphoreMain = new Semaphore(10);
+    public IniciarServer(int numeroHilosSimultaneos) {
+        semaphoreMain = new Semaphore(numeroHilosSimultaneos);
         myServidor = new ServidorSocket(semaphoreMain);
 
     }
